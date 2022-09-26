@@ -3,7 +3,7 @@ class Person
   attr_reader :id
   attr_accessor :name, :age
 
-  # constructor
+  # A constructor initialize with init parameters that any new instance of class should have
   def initialize(age, name: 'Unknown', parent_permission: true)
     @id = Random.rand(1..1000)
     @name = name

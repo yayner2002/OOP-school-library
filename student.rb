@@ -1,6 +1,6 @@
 require './person'
 
-# student class inherits from person
+# student inherits properties from person
 class Student < Person
   def initialize(classroom)
     @classroom = classroom
