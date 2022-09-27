@@ -9,6 +9,9 @@ class Person < Nameable
     @parent_permission = parent_permission
   end
 
+  def correct_name
+    @name
+  end
 
   attr_reader :id # getter
   attr_accessor :name, :age # getter and setter
