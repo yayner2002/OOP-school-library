@@ -1,10 +1,17 @@
-class Person
+require './nameable'
+
+class Person < Nameable
   # A constructor initialize with init parameters that any new instance of class should have
   def initialize(age, name: 'Unknown', parent_permission: true)
     @id = Random.rand(1..1000)
     @name = name
     @age = age
     @parent_permission = parent_permission
+    super()
+  end
+
+  def correct_name
+    @name
   end
 
   attr_reader :id # getter
