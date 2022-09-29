@@ -7,6 +7,8 @@ class Person < Nameable
     @name = name
     @age = age
     @parent_permission = parent_permission
+
+    @rental = []
     super()
   end
 
@@ -14,7 +16,7 @@ class Person < Nameable
     @name
   end
 
-  attr_reader :id # getter
+  attr_reader :id, rental # getter
   attr_accessor :name, :age # getter and setter
 
   def of_age?
