@@ -76,6 +76,32 @@ def permission?(parent_permission)
   end
 end
 
+def create_student(classroom, age, name, parent_permission)
+  student = Student.new(classroom, age, name, parent_permission: parent_permission)
+  @people << student unless @people.include?(student)
+  @students << student unless @students.include?(student)
+end
+
+def create_teacher(specialization, age, name)
+  teacher = Teacher.new(specialization, age, name)
+  @people << teacher unless @people.include?(teacher)
+  @teachers << teacher unless @teachers.include?(teacher)
+end
+
+def student_option
+  print ' Enter student Name : '
+  name = gets.chomp
+  print ' Enter student Age : '
+  age = gets.chomp
+  print ' Enter student Classroom <number> : '
+  classroom = gets.chomp
+  parent_permission = true
+  permission?(parent_permission)
+  create_student(classroom.to_i, age.to_i, name, parent_permission)
+  puts "---------  New student Added!  ----------- \n
+  #{name} is #{age} years old in classroom #{classroom.to_i}"
+  puts '-------------------------------- '
+end
 
 
 
