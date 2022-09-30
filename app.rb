@@ -6,7 +6,7 @@ require './rental'
 require 'date'
 require './classroom'
 
-class App
+class Apps
   attr_accessor :books, :people
 
   def initialize
@@ -17,18 +17,15 @@ class App
     @students = []
   end
 
-  def run
-    user_input
-  end
-
   def list_books
-    puts '----Books shielf----------'
+    puts '----------Books shielf----------'
     if @books.empty?
       puts 'No Available books in the shielf'
-    else
-      @books.each_with_index do |book, index|
-        puts " #{index + 1} - Title: \"#{book.title}\", Author: #{book.author}"
-      end
+      puts '-----------------------------'
+      return
+    end
+    @books.each_with_index do |book, index|
+      puts " #{index + 1} - Title: \"#{book.title}\", Author: #{book.author}"
     end
     puts '-----------------------------'
   end
@@ -37,12 +34,13 @@ class App
     puts '---------list of people----'
     if @people.empty?
       puts 'No person available'
+      puts '--------------------------------'
     else
       @people.each_with_index do |person, index|
         if person.instance_of?(Student)
-          puts "#{idex + 1} - [Student] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+          puts "#{index + 1} - [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
         else
-          puts "#{index + 1} - [Teacher] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+          puts "#{index + 1} - [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
         end
       end
     end
@@ -54,13 +52,14 @@ class App
     input = gets.chomp
     case input.to_i
     when 1
-      teacher_option
-    when 2
       student_option
+    when 2
+      teacher_option
     else
       puts 'you entered invalid in put! Please try again:'
-      create_person
+      return
     end
+    puts 'Person selected succesfully'
   end
 
   def permission?(parent_permission)
@@ -96,10 +95,10 @@ class App
     print ' Enter student Classroom <number> : '
     classroom = gets.chomp
     parent_permission = true
-    permission?(parent_permission)
-    create_student(classroom.to_i, age.to_i, name, parent_permission)
-    puts "---------  New student Added!  ----------- \n
-  #{name} is #{age} years old in classroom #{classroom.to_i}"
+    perm = permission?(parent_permission)
+    create_student(classroom.to_i, age.to_i, name, perm)
+    puts "---------  New student #{name} has been Added successfully!  ----------- \n
+  #{name} is #{age} years old is in classroom #{classroom.to_i}"
     puts '-------------------------------- '
   end
 
@@ -152,7 +151,7 @@ class App
     puts '-------Rental list by ID'
     print '\n Enter the person \'s ID :'
     id = gets.chomp
-    puts '----Rentsl list----'
+    puts '----Rental list----'
     if @rentals.empty?
       puts 'No rental available'
     else
