@@ -103,6 +103,33 @@ def student_option
   puts '-------------------------------- '
 end
 
+def teacher_option
+  print 'Enter teacher name:'
+  name = gets.chomp
+  print 'Enter teacher age:'
+  age = gets.chomp
+  print 'Enter Teacher specialization:'
+  specialization = gets.chomp
+  create_teacher(specialization, age.to_i, name)
+  puts '-----New Teacher Added Successfully----'
+  puts "#{name} is #{age} years old, specialization is #{specialization}"
+  puts '-------------------------'
+end
+
+def create_new_book
+  puts '------------ Creating New Book -----------'
+  print ' Enter Book Title : '
+  title = gets.chomp
+  print ' Enter Book Author : '
+  author = gets.chomp
+
+  book = Book.new(title, author)
+  @books << book unless @books.include?(book)
+  puts '------------ New Book Added -----------'
+  puts "#{title} by #{author} added to book list successfuly!\n
+  -----------------------------------"
+end
+
 
 
 end
