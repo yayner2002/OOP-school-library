@@ -6,7 +6,7 @@ require './rental'
 require 'date'
 require './classroom'
 
-class Apps
+class App
   attr_accessor :books, :people
 
   def initialize
