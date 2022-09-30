@@ -62,4 +62,21 @@ def create_person
     create_person
   end
 end
+
+def permission?(parent_permission)
+  print 'Has parent permission? [Y/N]: '
+  permission = gets.chomp
+  case permission
+  when 'n', 'N'
+    !parent_permission
+  when 'y', 'Y'
+    parent_permission
+  else
+    permission?(parent_permission)
+  end
+end
+
+
+
+
 end
