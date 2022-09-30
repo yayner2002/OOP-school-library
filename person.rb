@@ -1,7 +1,7 @@
 require './nameable'
 
 class Person < Nameable
-  attr_reader :id, :rental # getter
+  attr_reader :id, :rentals # getter
   attr_accessor :name, :age # getter and setter
 
   # A constructor initialize with init parameters that any new instance of class should have
@@ -10,7 +10,7 @@ class Person < Nameable
     @name = name
     @age = age
     @parent_permission = parent_permission
-    @rental = []
+    @rentals = []
     super()
   end
 

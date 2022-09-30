@@ -35,10 +35,10 @@ class Apps
     if @people.empty?
       puts 'No person available'
       puts '--------------------------------'
-    else
-      @people.each_with_index do |person, index|
-        puts "#{index + 1} - [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
-      end
+      return
+    end
+    @people.each_with_index do |person, index|
+      puts "#{index + 1} - [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
     puts '-----------------------'
   end
@@ -52,7 +52,7 @@ class Apps
     when 2
       teacher_option
     else
-      puts 'you entered invalid in put! Please try again:'
+      puts 'you entered invalid input! Please try again:'
       return
     end
     puts 'Person selected succesfully'
