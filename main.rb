@@ -33,7 +33,7 @@ def user_input
   if user_opt_num == 7
     puts '------Good bye and thanks for using our library app ------'
   else
-    menu_option
+    menu_option(user_opt_num)
   end
 end
 
