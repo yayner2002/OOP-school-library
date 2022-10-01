@@ -91,8 +91,8 @@ class Apps
     print ' Enter student Classroom <number> : '
     classroom = gets.chomp
     parent_permission = true
-    perm = permission?(parent_permission)
-    create_student(classroom.to_i, age.to_i, name, perm)
+    permission?(parent_permission)
+    create_student(classroom.to_i, age.to_i, name, parent_permission)
     puts "---------  New student #{name} has been Added successfully!  ----------- \n
   #{name} is #{age} years old is in classroom #{classroom.to_i}"
     puts '-------------------------------- '
@@ -135,7 +135,7 @@ class Apps
     list_people
     person_number = gets.chomp
     print ' Enter the Date e.g (2022/9/29) : '
-    date = gets.chomp
+    date = conver_date(gets)
 
     rent = Rental.new(date, books[book_number.to_i - 1], people[person_number.to_i - 1])
     @rentals << rent unless @rentals.include?(rent)
@@ -145,7 +145,7 @@ class Apps
 
   def rent_list_by_id
     puts '-------Rental list by ID'
-    print '\n Enter the person \'s ID :'
+    print 'Enter the person\'s ID :'
     id = gets.chomp
     puts '----Rental list----'
     if @rentals.empty?
@@ -160,5 +160,10 @@ class Apps
       end
     end
     puts '-------------------------'
+  end
+
+  def conver_date(date)
+    Date.parse(date)
+
   end
 end
