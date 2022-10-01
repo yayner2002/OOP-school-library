@@ -164,6 +164,5 @@ class Apps
 
   def conver_date(date)
     Date.parse(date)
-
   end
 end
