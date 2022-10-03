@@ -17,7 +17,7 @@ class Main
     7 - Exit"
   end
     
-  def welcome
+  def intro
     puts 'welcome to our school library app !'
     puts "\n"
     puts 'please choose an option by entering a number :'
@@ -33,6 +33,9 @@ class Main
 
 
 end
+
+main = Main.new
+main.intro
 
 
   
