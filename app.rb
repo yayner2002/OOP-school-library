@@ -69,7 +69,7 @@ class Apps
     when 2
       teacher_option
     else
-      puts 'you entered invalid input! Please try again:'
+      puts 'You entered invalid input! Please try again:'
       return
     end
     puts 'Person selected succesfully'
@@ -88,18 +88,6 @@ class Apps
     end
   end
 
-  def create_student(classroom, age, name, parent_permission)
-    student = Student.new(classroom, age, name, parent_permission: parent_permission)
-    @people << student unless @people.include?(student)
-    @students << student unless @students.include?(student)
-  end
-
-  def create_teacher(specialization, age, name)
-    teacher = Teacher.new(specialization, age, name)
-    @people << teacher unless @people.include?(teacher)
-    @teachers << teacher unless @teachers.include?(teacher)
-  end
-
   def student_option
     print ' Enter student Name : '
     name = gets.chomp
@@ -109,10 +97,10 @@ class Apps
     classroom = gets.chomp
     parent_permission = true
     permission?(parent_permission)
-    create_student(classroom.to_i, age.to_i, name, parent_permission)
-    puts "---------  New student #{name} has been Added successfully!  ----------- \n
-  #{name} is #{age} years old is in classroom #{classroom.to_i}"
-    puts '-------------------------------- '
+    student = Student.new(classroom, age, name, parent_permission)
+    @people << student unless @people.include?(student)
+    @students << student unless @students.include?(student)
+    puts "---------  New student #{name} has been Added successfully!  --------"
   end
 
   def teacher_option
@@ -122,10 +110,11 @@ class Apps
     age = gets.chomp
     print 'Enter Teacher specialization:'
     specialization = gets.chomp
-    create_teacher(specialization, age.to_i, name)
+    teacher = Teacher.new(specialization, age, name)
+    @people << teacher unless @people.include?(teacher)
+    @teachers << teacher unless @teachers.include?(teacher)
     puts '-----New Teacher Added Successfully----'
     puts "#{name} is #{age} years old, specialization is #{specialization}"
-    puts '-------------------------'
   end
 
   def create_new_book
