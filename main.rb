@@ -17,7 +17,20 @@ class Main
     7 - Exit"
   end
     
-  
+  def welcome
+    puts 'welcome to our school library app !'
+    puts "\n"
+    puts 'please choose an option by entering a number :'
+
+    loop do
+      main_menu
+      user_preference = gets.chomp.to_i
+      break if user_preference == 7
+      @app.switch_option(user_preference)
+    end
+    puts 'thanks for using our APP'
+  end
+
 
 end
 
