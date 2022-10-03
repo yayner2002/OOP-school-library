@@ -17,6 +17,22 @@ class Apps
     @students = []
   end
 
+  def switch_option(user_preference)
+    case user_preference
+    when 1
+      list_books
+    when 2
+      list_people
+    when 3
+      create_person
+    when 4
+      create_new_book
+    when 5
+      create_rental
+    when 6
+      rent_list_by_id
+    end
+  end
 
   def list_books
     puts '----------Books shielf----------'

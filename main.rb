@@ -5,7 +5,6 @@ class Main
     @apps = Apps.new
   end
 
-
   def main_menu
     puts "
     1 - list all books.
@@ -16,7 +15,7 @@ class Main
     6 - list all rental for a given person id.
     7 - Exit"
   end
-    
+
   def intro
     puts 'welcome to our school library app !'
     puts "\n"
@@ -26,16 +25,12 @@ class Main
       main_menu
       user_preference = gets.chomp.to_i
       break if user_preference == 7
+
       @app.switch_option(user_preference)
     end
     puts 'thanks for using our APP'
   end
-
-
 end
 
 main = Main.new
 main.intro
-
-
-  
