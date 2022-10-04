@@ -13,8 +13,6 @@ class Apps
     @rentals = []
     @people = []
     @books = []
-    @teachers = []
-    @students = []
   end
 
   def switch_option(user_preference)
@@ -38,13 +36,11 @@ class Apps
     puts '----------Books shielf----------'
     if @books.empty?
       puts 'No Available books in the shielf'
-      puts '-----------------------------'
       return
     end
     @books.each_with_index do |book, index|
       puts " #{index + 1} - Title: \"#{book.title}\", Author: #{book.author}"
     end
-    puts '-----------------------------'
   end
 
   def list_people
@@ -116,13 +112,11 @@ class Apps
   def create_student(classroom, age, name, parent_permission)
     student = Student.new(classroom, age, name, parent_permission)
     @people << student unless @people.include?(student)
-    @students << student unless @students.include?(student)
   end
 
   def create_teacher(specialization, age, name)
-  teacher = Teacher.new(specialization, age, name)
-  @people << teacher unless @people.include?(teacher)
-  @teachers << teacher unless @teachers.include?(teacher)
+    teacher = Teacher.new(specialization, age, name)
+    @people << teacher unless @people.include?(teacher)
   end
 
   def create_new_book
