@@ -26,7 +26,7 @@ class Main
       user_preference = gets.chomp.to_i
       break if user_preference == 7
 
-      @app.switch_option(user_preference)
+      @apps.switch_option(user_preference)
     end
     puts 'thanks for using our APP'
   end
