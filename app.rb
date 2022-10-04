@@ -148,7 +148,6 @@ class Apps
     rent = Rental.new(date, books[book_number.to_i - 1], people[person_number.to_i - 1])
     @rentals << rent unless @rentals.include?(rent)
     puts '-------- Rental Created -------'
-    puts '-----------------------------'
   end
 
   def rent_list_by_id
