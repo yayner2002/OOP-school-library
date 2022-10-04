@@ -13,21 +13,34 @@ class Apps
     @rentals = []
     @people = []
     @books = []
-    @teachers = []
-    @students = []
+  end
+
+  def switch_option(user_preference)
+    case user_preference
+    when 1
+      list_books
+    when 2
+      list_people
+    when 3
+      create_person
+    when 4
+      create_new_book
+    when 5
+      create_rental
+    when 6
+      rent_list_by_id
+    end
   end
 
   def list_books
     puts '----------Books shielf----------'
     if @books.empty?
       puts 'No Available books in the shielf'
-      puts '-----------------------------'
       return
     end
     @books.each_with_index do |book, index|
       puts " #{index + 1} - Title: \"#{book.title}\", Author: #{book.author}"
     end
-    puts '-----------------------------'
   end
 
   def list_people
@@ -52,7 +65,7 @@ class Apps
     when 2
       teacher_option
     else
-      puts 'you entered invalid input! Please try again:'
+      puts 'You entered invalid input! Please try again:'
       return
     end
     puts 'Person selected succesfully'
@@ -71,18 +84,6 @@ class Apps
     end
   end
 
-  def create_student(classroom, age, name, parent_permission)
-    student = Student.new(classroom, age, name, parent_permission: parent_permission)
-    @people << student unless @people.include?(student)
-    @students << student unless @students.include?(student)
-  end
-
-  def create_teacher(specialization, age, name)
-    teacher = Teacher.new(specialization, age, name)
-    @people << teacher unless @people.include?(teacher)
-    @teachers << teacher unless @teachers.include?(teacher)
-  end
-
   def student_option
     print ' Enter student Name : '
     name = gets.chomp
@@ -93,9 +94,7 @@ class Apps
     parent_permission = true
     permission?(parent_permission)
     create_student(classroom.to_i, age.to_i, name, parent_permission)
-    puts "---------  New student #{name} has been Added successfully!  ----------- \n
-  #{name} is #{age} years old is in classroom #{classroom.to_i}"
-    puts '-------------------------------- '
+    puts "---------  New student #{name} has been Added successfully!  --------"
   end
 
   def teacher_option
@@ -108,7 +107,16 @@ class Apps
     create_teacher(specialization, age.to_i, name)
     puts '-----New Teacher Added Successfully----'
     puts "#{name} is #{age} years old, specialization is #{specialization}"
-    puts '-------------------------'
+  end
+
+  def create_student(classroom, age, name, parent_permission)
+    student = Student.new(classroom, age, name, parent_permission: parent_permission)
+    @people << student unless @people.include?(student)
+  end
+
+  def create_teacher(specialization, age, name)
+    teacher = Teacher.new(specialization, age, name)
+    @people << teacher unless @people.include?(teacher)
   end
 
   def create_new_book
@@ -140,7 +148,6 @@ class Apps
     rent = Rental.new(date, books[book_number.to_i - 1], people[person_number.to_i - 1])
     @rentals << rent unless @rentals.include?(rent)
     puts '-------- Rental Created -------'
-    puts '-----------------------------'
   end
 
   def rent_list_by_id
