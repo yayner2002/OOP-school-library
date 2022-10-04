@@ -93,7 +93,7 @@ class Apps
     classroom = gets.chomp
     parent_permission = true
     permission?(parent_permission)
-    create_student(classroom, age, name, parent_permission)
+    create_student(classroom.to_i, age.to_i, name, parent_permission)
     puts "---------  New student #{name} has been Added successfully!  --------"
   end
 
@@ -104,13 +104,13 @@ class Apps
     age = gets.chomp
     print 'Enter Teacher specialization:'
     specialization = gets.chomp
-    create_teacher(specialization, age, name)
+    create_teacher(specialization, age.to_i, name)
     puts '-----New Teacher Added Successfully----'
     puts "#{name} is #{age} years old, specialization is #{specialization}"
   end
 
   def create_student(classroom, age, name, parent_permission)
-    student = Student.new(classroom, age, name, parent_permission)
+    student = Student.new(classroom, age, name, parent_permission: parent_permission)
     @people << student unless @people.include?(student)
   end
 
